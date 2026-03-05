@@ -1,16 +1,20 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include "cell.h"
 
 int main(){
 	char *buffer;
 	size_t bufsize;
-	size_t characters;
+	ssize_t characters;
+  token result;
+  result.tokens = NULL;
+  result.size = 0;
 	do{
-		
-
 		characters = getline(&buffer, &bufsize, stdin);
 		if (characters != -1){
-			printf("%s", buffer);
+      result = tokenize(buffer);
+      for (int i = 0;i<result.size;i++) {
+        printf("%s ", result.tokens[i]);
+      }
+      printf("\n");
 		}
 		else{
 			perror("getline failed");
@@ -19,6 +23,7 @@ int main(){
 		
 
 	}while(1);
+  freeToken(&result);
 	free(buffer);
 	return 0;
 }
