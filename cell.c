@@ -11,10 +11,7 @@ int main(){
 		characters = getline(&buffer, &bufsize, stdin);
 		if (characters != -1){
       result = tokenize(buffer);
-      for (int i = 0;i<result.size;i++) {
-        printf("%s ", result.tokens[i]);
-      }
-      printf("\n");
+      execC(result);
 		}
 		else{
 			perror("getline failed");

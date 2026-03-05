@@ -10,7 +10,7 @@ token tokenize(char *args){
     return result;
   }
   
-  char* tk = strtok(args, " ");
+  char* tk = strtok(args, " \n");
 
   while(tk != NULL){
     char **temp = realloc(result.tokens,sizeof(char*)*(result.size+1));
@@ -22,7 +22,7 @@ token tokenize(char *args){
     result.tokens[result.size] = strdup(tk);
     result.size++;
 
-    tk = strtok(NULL, " ");
+    tk = strtok(NULL, " \n");
   }
   free(input_copy);
   return result;
